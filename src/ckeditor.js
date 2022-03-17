@@ -175,8 +175,6 @@ ClassicEditor.defaultConfig = {
     ],
   },
   link: {
-    allowedContent: [target],
-    defaultProtocol: "https://",
     decorators: {
       openInNewTab: {
         mode: "manual",
@@ -187,6 +185,17 @@ ClassicEditor.defaultConfig = {
           rel: "noopener noreferrer",
         },
       },
+    },
+  },
+  plugins: [
+    Autosave,
+
+    // ... other plugins
+  ],
+
+  autosave: {
+    save(editor) {
+      return saveData(editor.getData());
     },
   },
   htmlEmbed: {
