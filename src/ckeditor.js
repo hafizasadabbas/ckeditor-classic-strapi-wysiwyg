@@ -175,6 +175,8 @@ ClassicEditor.defaultConfig = {
     ],
   },
   link: {
+    allowedContent: [target],
+    defaultProtocol: "https://",
     decorators: {
       openInNewTab: {
         mode: "manual",
