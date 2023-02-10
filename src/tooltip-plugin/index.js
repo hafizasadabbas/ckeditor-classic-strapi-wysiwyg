@@ -6,7 +6,6 @@ export default class ToolTip extends Plugin {
   static get pluginName() {
     return "Tooltip";
   }
-
   init() {
     const editor = this.editor;
     editor.ui.componentFactory.add("tooltip", (locale) => {
@@ -17,44 +16,19 @@ export default class ToolTip extends Plugin {
         icon: pencil,
         tooltip: true,
       });
-
+      // Callback executed once the image is clicked.
       view.on("execute", () => {
-        editor.execute("tooltip");
+        const inputTooltipText = prompt("ToolTip Text");
+        editor.model.change((writer) => {
+          const link = writer.createText(inputTooltipText, {
+            linkHref: "#bayut-content-tooltip",
+          });
+          // Insert the image in the current selection location.
+          editor.model.insertContent(link, editor.model.document.selection);
+        });
       });
 
       return view;
-    });
-
-    editor.addCommand("tooltip", new DialogCommand("tooltipDialog"));
-
-    editor.dialog.add("tooltipDialog", {
-      title: "Tooltip Dialog",
-      minWidth: 400,
-      minHeight: 200,
-      elements: [
-        {
-          type: "text",
-          id: "text",
-          label: "Text",
-          validate: validateNotEmpty("Text field cannot be empty."),
-        },
-        {
-          type: "text",
-          id: "tooltipText",
-          label: "Tooltip Text",
-          validate: validateNotEmpty("Tooltip text field cannot be empty."),
-        },
-      ],
-      onOk: (dialog) => {
-        const text = dialog.getValueOf("text");
-        const tooltipText = dialog.getValueOf("tooltipText");
-        editor.model.change((writer) => {
-          const tooltip = writer.createText(text, {
-            tooltip: tooltipText,
-          });
-          editor.model.insertContent(tooltip, editor.model.document.selection);
-        });
-      },
     });
   }
 }
