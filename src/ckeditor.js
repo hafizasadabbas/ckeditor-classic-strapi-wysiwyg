@@ -42,7 +42,7 @@ import { StrapiUploadAdapter } from "@gtomato/ckeditor5-strapi-upload-plugin";
 import { StrapiMediaLib } from "./strapi-medialib-plugin";
 import sanitizeHtml from "sanitize-html";
 import FullScreen from "./fullscreen-plugin";
-import CustomTooltipPlugin from "./tooltip-plugin";
+import Tooltip from "./tooltip-plugin/tooltip";
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -74,7 +74,7 @@ ClassicEditor.builtinPlugins = [
   TableToolbar,
   TableProperties,
   TableCellProperties,
-  CustomTooltipPlugin,
+  Tooltip,
 ];
 
 // Editor configuration.
@@ -102,7 +102,7 @@ ClassicEditor.defaultConfig = {
       "mediaEmbed",
       "htmlEmbed",
       "codeBlock",
-      "customTooltip",
+      "toolTip",
     ],
     shouldNotGroupWhenFull: true,
   },
