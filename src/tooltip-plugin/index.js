@@ -1,5 +1,5 @@
 import Plugin from "@ckeditor/ckeditor5-core/src/plugin";
-import TooltipView from "./tooltipview";
+import TooltipView from "@ckeditor/ckeditor5-ui/src/tooltip/tooltipview";
 
 export default class CustomTooltipPlugin extends Plugin {
   static get requires() {
