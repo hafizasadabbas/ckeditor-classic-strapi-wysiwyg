@@ -42,9 +42,7 @@ import { StrapiUploadAdapter } from "@gtomato/ckeditor5-strapi-upload-plugin";
 import { StrapiMediaLib } from "./strapi-medialib-plugin";
 import sanitizeHtml from "sanitize-html";
 import FullScreen from "./fullscreen-plugin";
-import imageIcon from "@ckeditor/ckeditor5-core/theme/icons/pencil.svg";
-import Plugin from "@ckeditor/ckeditor5-core/src/plugin";
-import ButtonView from "@ckeditor/ckeditor5-ui/src/button/buttonview";
+import ToolTip from "./tooltip-plugin";
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -76,7 +74,7 @@ ClassicEditor.builtinPlugins = [
   TableToolbar,
   TableProperties,
   TableCellProperties,
-  InsertToolTip,
+  ToolTip,
 ];
 
 // Editor configuration.
@@ -104,7 +102,7 @@ ClassicEditor.defaultConfig = {
       "mediaEmbed",
       "htmlEmbed",
       "codeBlock",
-      "InsertToolTip",
+      "tooltip",
     ],
     shouldNotGroupWhenFull: true,
   },
@@ -192,30 +190,3 @@ ClassicEditor.defaultConfig = {
   // This value must be kept in sync with the language defined in webpack.config.js.
   language: "en",
 };
-class InsertToolTip extends Plugin {
-  init() {
-    const editor = this.editor;
-    editor.ui.componentFactory.add("InsertToolTip", (locale) => {
-      const view = new ButtonView(locale);
-
-      view.set({
-        label: "Tooltip",
-        icon: imageIcon,
-        tooltip: true,
-      });
-      // Callback executed once the image is clicked.
-      view.on("execute", () => {
-        const inputTooltipText = prompt("ToolTip Text");
-        editor.model.change((writer) => {
-          const link = writer.createText(inputTooltipText, {
-            linkHref: "#bayut-content-tooltip",
-          });
-          // Insert the image in the current selection location.
-          editor.model.insertContent(link, editor.model.document.selection);
-        });
-      });
-
-      return view;
-    });
-  }
-}
