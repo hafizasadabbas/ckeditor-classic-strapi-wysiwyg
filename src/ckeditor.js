@@ -39,9 +39,7 @@ import HtmlEmbed from "@ckeditor/ckeditor5-html-embed/src/htmlembed";
 import Font from "@ckeditor/ckeditor5-font/src/font";
 import CodeBlock from "@ckeditor/ckeditor5-code-block/src/codeblock";
 import { StrapiUploadAdapter } from "@gtomato/ckeditor5-strapi-upload-plugin";
-import { StrapiMediaLib } from "./strapi-medialib-plugin";
 import sanitizeHtml from "sanitize-html";
-import FullScreen from "./fullscreen-plugin";
 import Tooltip from "./tooltip-plugin/tooltip";
 
 export default class ClassicEditor extends ClassicEditorBase {}

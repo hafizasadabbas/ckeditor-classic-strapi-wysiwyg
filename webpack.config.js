@@ -59,11 +59,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.svg$/,
+        test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+
         use: ["raw-loader"],
       },
       {
-        test: /\.css$/,
+        test: [/ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/, /\.css$/],
+
         use: [
           {
             loader: "style-loader",
@@ -74,15 +76,16 @@ module.exports = {
               },
             },
           },
+          "css-loader",
           {
             loader: "postcss-loader",
             options: {
-              postcssOptions: {
-                plugins: [require("autoprefixer")],
-              },
-              execute: true,
-              sourceMap: true,
-              implementation: require("postcss"),
+              postcssOptions: styles.getPostCssConfig({
+                themeImporter: {
+                  themePath: require.resolve("@ckeditor/ckeditor5-theme-lark"),
+                },
+                minify: true,
+              }),
             },
           },
         ],
