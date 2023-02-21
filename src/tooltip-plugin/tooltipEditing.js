@@ -30,7 +30,7 @@ export default class TooltipEditing extends Plugin {
       view: (modelAttributeValue, conversionApi) => {
         const { writer } = conversionApi;
         return writer.createAttributeElement("a", {
-          title: modelAttributeValue,
+          href: "#bayut-content-tooltip",
         });
       },
     });
@@ -39,15 +39,15 @@ export default class TooltipEditing extends Plugin {
     conversion.for("upcast").elementToAttribute({
       view: {
         name: "a",
-        attributes: ["title"],
+        attributes: ["href"],
       },
       model: {
         key: "tooltip",
 
         // Callback function provides access to the view element
         value: (viewElement) => {
-          const title = viewElement.getAttribute("title");
-          return title;
+          const href = viewElement.getAttribute("href");
+          return href;
         },
       },
     });
