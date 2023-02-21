@@ -46,7 +46,7 @@ export default class TooltipUI extends Plugin {
       const abbr = formView.abbrInputView.fieldView.element.value;
 
       editor.model.change((writer) => {
-        editor.model.insertContent(writer.createText(abbr, { tooltip: href }));
+        editor.model.insertContent(writer.createText(abbr));
       });
 
       // Hide the form view after submit.
