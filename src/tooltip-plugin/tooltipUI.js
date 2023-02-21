@@ -7,6 +7,7 @@ import Plugin from "@ckeditor/ckeditor5-core/src/plugin";
 import ButtonView from "@ckeditor/ckeditor5-ui/src/button/buttonview";
 import { ContextualBalloon, clickOutsideHandler } from "@ckeditor/ckeditor5-ui";
 import FormView from "./tooltipView";
+import "./css/style.css";
 
 export default class TooltipUI extends Plugin {
   static get requires() {
