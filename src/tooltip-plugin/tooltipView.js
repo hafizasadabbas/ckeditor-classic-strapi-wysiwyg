@@ -17,6 +17,7 @@ export default class FormView extends View {
     super(locale);
 
     this.abbrInputView = this._createInput("Add tooltip");
+    //this.titleInputView = this._createInput("Add title");
 
     this.saveButtonView = this._createButton(
       "Save",
@@ -38,6 +39,7 @@ export default class FormView extends View {
 
     this.childViews = this.createCollection([
       this.abbrInputView,
+      //this.titleInputView,
       this.saveButtonView,
       this.cancelButtonView,
     ]);

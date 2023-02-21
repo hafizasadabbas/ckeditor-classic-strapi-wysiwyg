@@ -42,11 +42,12 @@ export default class TooltipUI extends Plugin {
 
     // Execute the command after clicking the "Save" button.
     this.listenTo(formView, "submit", () => {
-      // Grab values from the tooltip input fields.
+      // Grab values from the tooltip and title input fields.
+      //const title = formView.titleInputView.fieldView.element.value;
       const abbr = formView.abbrInputView.fieldView.element.value;
 
       editor.model.change((writer) => {
-        editor.model.insertContent(writer.createText(abbr));
+        editor.model.insertContent(writer.createText(abbr, { tooltip: abbr }));
       });
 
       // Hide the form view after submit.
@@ -81,6 +82,7 @@ export default class TooltipUI extends Plugin {
   _hideUI() {
     // Clear the input field values and reset the form.
     this.formView.abbrInputView.fieldView.value = "";
+    //this.formView.titleInputView.fieldView.value = "";
     this.formView.element.reset();
 
     this._balloon.remove(this.formView);
