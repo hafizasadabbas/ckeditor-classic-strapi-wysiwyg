@@ -29,7 +29,7 @@ export default class TooltipEditing extends Plugin {
       // and the DowncastWriter
       view: (modelAttributeValue, conversionApi) => {
         const { writer } = conversionApi;
-        return writer.createAttributeElement("abbr", {
+        return writer.createAttributeElement("a", {
           title: modelAttributeValue,
         });
       },
@@ -38,7 +38,7 @@ export default class TooltipEditing extends Plugin {
     // Conversion from a view element to a model attribute
     conversion.for("upcast").elementToAttribute({
       view: {
-        name: "abbr",
+        name: "a",
         attributes: ["title"],
       },
       model: {
